@@ -1,1 +1,1 @@
-# sample-bats-repo-buidkite-plugin
+# sample-bats-repo-buildkite-plugin
