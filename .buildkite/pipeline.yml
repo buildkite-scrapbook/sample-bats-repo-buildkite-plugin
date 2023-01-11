@@ -1,0 +1,18 @@
+steps:
+  # - label: "Our Own Plugin Test"
+  #   env:
+  #     BUILDKITE_PLUGINS_ALWAYS_CLONE_FRESH: "true"
+  #   plugins:
+  #     - buildkite-scrapbook/sample-bats-repo#main: ~
+  
+  - label: ":shell: Test using Buildkite's own Bats docker box"
+    command: "bats tests/"
+    plugins:
+      - docker#master:
+          image: buildkite/plugin-tester:latest
+          workdir: /plugin
+
+  # - label: ":shell: Test using Shellcheck for shell syntax improvements"
+  #   plugins:
+  #     - shellcheck#v1.1.2: #v1.3.0 (latest)
+  #         files: hooks/**

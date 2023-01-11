@@ -1,0 +1,7 @@
+name: Sample Bats Repo
+description: Testing BATS
+author: https://github.com/buildkite-scrapbook
+requirements: []
+configuration:
+  properties: {}
+  additionalProperties: false

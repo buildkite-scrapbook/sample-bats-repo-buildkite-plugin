@@ -1,0 +1,7 @@
+version: '3.7'
+services:
+  test:
+    image: buildkite/plugin-tester
+    command: ['bats','tests/']
+    volumes:
+      - ".:/plugin:ro"

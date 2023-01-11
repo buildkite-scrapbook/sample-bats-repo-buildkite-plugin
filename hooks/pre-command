@@ -1,0 +1,14 @@
+#!/bin/bash
+set -euo pipefail
+
+echo "Inside pre-command hook"
+
+# COUNT=$(find . -name "$PATTERN" | wc -l)
+
+# echo "Found ${COUNT} files matching ${PATTERN}"
+
+# buildkite-agent annotate "Found ${COUNT} files matching ${PATTERN}"
+
+RESULT=$(send success-result)
+
+echo "Pre-command Result: ${RESULT}"
