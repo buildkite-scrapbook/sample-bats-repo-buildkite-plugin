@@ -6,21 +6,34 @@ load '/usr/local/lib/bats/load.bash'
 # export BUILDKITE_AGENT_STUB_DEBUG=/dev/tty
 
 # setup - occurs before each test case
-setup() { 
+function setup() { 
+    stub check \
+    'criteria output : echo "checking that it matches criteria"'
+
     stub send \
     'success-result : echo "SUCCEEDED:pre-command hook used stub successfully"'
-
 }
 
 # teardown - occurs after each test case
-teardown() {
-    unstub send    
+function teardown() {
+    unstub check
+    # unstub --allow-missing send # --allow-missing flag not working
+    unstub send
 }
 
-@test "Checks pre-command hook is working properly" {
-  run "$PWD/hooks/pre-command"
+@test "Checking criteria output of pre-command hook is working correctly" {
+    run "$PWD/hooks/pre-command"
 
-  assert_success
-  assert_output --partial "Inside pre-command hook"
-  assert_output --partial "SUCCEEDED"
+    assert_success
+    assert_output --partial "Inside pre-command hook"
+    assert_output --partial "Output of Criteria ="
+    assert_output --partial "checking that it matches criteria"
+}
+
+@test "Ensure result of pre-command hook is correct" {
+    run "$PWD/hooks/pre-command"
+
+    assert_success
+    assert_output --partial "Inside pre-command hook"
+    assert_output --partial "SUCCEEDED"
 }

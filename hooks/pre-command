@@ -9,6 +9,10 @@ echo "Inside pre-command hook"
 
 # buildkite-agent annotate "Found ${COUNT} files matching ${PATTERN}"
 
+CRITERIA_OUTPUT=$(check criteria output)
+
+echo "Output of Criteria = ${CRITERIA_OUTPUT}"
+
 RESULT=$(send success-result)
 
 echo "Pre-command Result: ${RESULT}"
